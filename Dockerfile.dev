@@ -1,0 +1,15 @@
+FROM node:20-alpine3.19
+
+RUN mkdir /app
+RUN chown -R node:node /app
+
+USER node
+WORKDIR /app
+
+
+ADD package.json yarn.lock* ./
+
+RUN ls -l
+RUN yarn install
+
+ENTRYPOINT [ "yarn", "dev" ]
